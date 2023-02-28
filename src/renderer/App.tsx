@@ -1,50 +1,43 @@
+import { Container } from 'react-bootstrap';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
-
-const Hello = () => {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-};
+import AddInterventionPage from './components/addintervention';
+import AddPersonPage from './components/addperson';
+import AssociationList from './components/associationlist';
+import AssociationPage from './components/associationpage';
+import EditPersonPage from './components/editpersonpage';
+import Homepage from './components/homepage'
+import ImportPage from './components/importpage';
+import InterventionPage from './components/interventionpage';
+import LocationPage from './components/locationpage';
+import AppNavbar from './components/navbar';
+import PersonPage from './components/personpage';
+import Persons from './components/persons';
+import ProjectPage from './components/projectpage';
+import Projects from './components/projects';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+        <AppNavbar />
+        <br />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/add" element={<AddPersonPage />} />
+            <Route path="/persons" element={<Persons />} />
+            <Route path="/person/:id" element={<PersonPage />} />
+            <Route path="/person/:id/:familiar_id" element={<PersonPage />} />
+            <Route path="/person/:id/edit" element={<EditPersonPage />} />        
+            <Route path="/person/:id/newintervention" element={<AddInterventionPage />} />        
+            <Route path="/associations" element={<AssociationList />} />
+            <Route path="/associations/:id" element={<AssociationPage />} />
+            <Route path="/locations/:id" element={<LocationPage />} />
+            <Route path="/intervention/:id" element={<InterventionPage />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectPage />} />
+            <Route path="/import" element={<ImportPage />} />
+          </Routes>
+        </Container>
+      </Router>
   );
 }
